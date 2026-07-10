@@ -1,12 +1,22 @@
 +++
 title = "About"
-description = "Hugo, the world’s fastest framework for building websites"
+description = "Harnesses, AI agents, uncensored LLM,  Blockchain, IT Law, Compliance, Hugo, the world’s fastest framework for building websites"
 date = "2019-02-28"
 aliases = ["about-us","about-hugo","contact"]
 author = "Hugo Authors"
 +++
 
-Written in Go, Hugo is an open source static site generator available under the [Apache Licence 2.0.](https://github.com/gohugoio/hugo/blob/master/LICENSE) Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
+We successfully advise and protect businesses in the areas of Blockchain, Web3, decentralized finance (DeFi), crypto assets, intellectual property, information technology (IT),international corporate law, and global compliance.
+We make harness technology effective MCP and explore Turboquantum - TQ.
+We utilize new technologies, both simple and complex:
+
+* https://agentskills.io/home
+* https://github.com/qdrant/migration?tab=readme-ov-file#from-another-qdrant-instance
+* https://langfuse.com/docs/observability/features/sessions
+* https://langfuse.com/faq/all/self-hosting-clickhouse-handling-failed-migrations
+* https://langfuse.com/integrations/no-code/openwebui
+
+We use framework Hugo. Written in Go, Hugo is an open source static site generator available under the [Apache Licence 2.0.](https://github.com/gohugoio/hugo/blob/master/LICENSE) Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
 
 Hugo makes use of a variety of open source projects including:
 
