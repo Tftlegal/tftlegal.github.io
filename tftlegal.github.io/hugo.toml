@@ -1,6 +1,6 @@
 baseURL = "https://ai.sytes.ru"
 languageCode = "ru-RU"
-title = "Archie"
+title = "Web3 and Cyber Security"
 theme="archie"
 copyright = "© Tftlegal"
 pygmentsstyle = "monokai"
