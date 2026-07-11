@@ -1,6 +1,6 @@
 baseURL = "https://ai.sytes.ru"
 languageCode = "ru-RU"
-title = "Web3 and Cyber Security"
+title = "Harness, Web3 and Cyber Security"
 theme="archie"
 copyright = "© Tftlegal"
 pygmentsstyle = "monokai"
@@ -9,7 +9,7 @@ pygmentscodefencesguesssyntax = true
 [params]
 	mode="auto"
 	useCDN=false
-	subtitle = "Minimal and Clean [blog theme for Hugo](https://github.com/athul/archie)"
+	subtitle = "Use telegram bot @harneess_bot for ChatOps or minimal web app [AI](https://ai.sytes.ru/)"
 
 [[params.social]]
 name = "GitHub"
