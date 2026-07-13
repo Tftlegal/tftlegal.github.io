@@ -1,6 +1,6 @@
 baseURL = "https://ai.sytes.ru"
 languageCode = "ru-RU"
-title = "Harness, Web3 and Cyber Security"
+title = "Chaos Engineering, Harness, Web3 and Cyber Security"
 theme="archie"
 copyright = "© Tftlegal"
 pygmentsstyle = "monokai"
@@ -9,7 +9,7 @@ pygmentscodefencesguesssyntax = true
 [params]
 	mode="auto"
 	useCDN=false
-	subtitle = "Use telegram bot @harneess_bot for ChatOps or minimal web app [AI](https://ai.sytes.ru/)"
+	subtitle = "Use telegram bot @harneess_bot for ChatOps (/masq - Multi Agent Systems Qdrant) or private web app [AI](https://ai.sytes.ru/)"
 
 [[params.social]]
 name = "GitHub"
