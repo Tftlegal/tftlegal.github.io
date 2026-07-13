@@ -1,3 +1,9 @@
+# GIT
+```
+git add .
+git commit -m "feat: Set new hugo.toml"
+git push -uf origin main
+```
 # Claude
 
 # План трансформации Hugo → Static Cyberpunk
