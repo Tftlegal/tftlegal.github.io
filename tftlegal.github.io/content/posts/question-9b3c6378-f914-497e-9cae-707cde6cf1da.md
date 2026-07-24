@@ -1,6 +1,7 @@
 ---
 title: "PostgreSQL для чайников?"
 summary: "PostgreSQL для чайников: полное руководство от установки до тюнинга"
+tags: [PostgreSQL, todo]
 date: 2026-07-23T20:24:39Z
 tldr: "933820173"
 ---
