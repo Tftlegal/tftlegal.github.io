@@ -4,6 +4,7 @@ git add .
 git commit -m "feat: Set new hugo.toml"
 git push -uf origin main
 ```
+
 # Claude
 
 # План трансформации Hugo → Static Cyberpunk
@@ -25,6 +26,22 @@ tftlegal.github.io/
 └── assets/
     ├── og-image.jpg
     └── logo.svg
+```
+
+## Для публикации или исправления нового поста по адресу https://tftlegal.github.io/posts/question-fb15d1a1-f51c-4c9e-a485-fe080d7a9d8b/
+
+
+Требуется перейти в каталоге проекта:
+```
+/home/SRE_MESH_bot/bin/tftlegal.github.io/tftlegal.github.io
+```
+Создать или отредактировать файл публикации в MD формате 
+```
+nano content/posts/question-fb15d1a1-f51c-4c9e-a485-fe080d7a9d8b.md
+```
+Добавить его в гит и запушить в ветку main
+```
+git add . && git commit -m "docs: Add new info content/posts/question-fb15d1a1-f51c-4c9e-a485-fe080d7a9d8b.md" && git push -uf origin main
 ```
 
 ---
