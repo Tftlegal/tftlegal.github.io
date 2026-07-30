@@ -1,6 +1,6 @@
 baseURL = "https://ai.sytes.ru"
 languageCode = "ru-RU"
-title = "Chaos Engineering, Harness, Web3 and Cyber Security"
+title = "Revers and Chaos Engineering, IaC,  Harness, Web3 and Cyber Security"
 theme="archie"
 copyright = "© Tftlegal"
 pygmentsstyle = "monokai"
