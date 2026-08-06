@@ -51,6 +51,7 @@ systemctl enable --now systemd-resolved.service
 ```
 cat /etc/systemd/resolved.conf
 ```
+
 ```
 [Resolve]
 DNS=94.140.14.14\#dns.adguard-dns.com 94.140.15.15\#dns.adguard-dns.com
@@ -79,6 +80,7 @@ resolvectl
 ```
 Примечание: в строке “Protocols:” будет +DNSOverTLS DNSSEC=yes/supported
 
+---
 
 ## Настройка DNSOverTLS на Debian10
 
@@ -190,54 +192,6 @@ DNSOverTLS=yes
 - установить отдельный DNS-клиент с поддержкой строгого DoT, например `stubby` или `knot-resolver`.
 
 Также учтите, что Debian 10 уже устарел и не является оптимальной базой для современной криптографической конфигурации.
-<span style="display:none">[^16_10][^16_11][^16_12][^16_13][^16_14][^16_15][^16_16][^16_17][^16_18][^16_19][^16_20][^16_21][^16_22][^16_3][^16_4][^16_5][^16_6][^16_7][^16_8][^16_9]</span>
-
-<div align="center">⁂</div>
-
-[^16_1]: https://manpages.debian.org/buster/systemd/resolved.conf.5.en.html
-
-[^16_2]: https://manpages.debian.org/unstable/systemd-resolved/resolved.conf.5.en.html
-
-[^16_3]: https://manpages.debian.org/buster/systemd/systemd-resolved.8.en.html
-
-[^16_4]: https://wiki.archlinux.org/title/Systemd-resolved
-
-[^16_5]: https://askubuntu.com/questions/1092498/dns-over-tls-with-systemd-resolved
-
-[^16_6]: https://wiki.archlinux.org/title/Systemd-resolved_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9)
-
-[^16_7]: https://fedoramagazine.org/use-dns-over-tls/
-
-[^16_8]: https://github.com/systemd/systemd/issues/18060
-
-[^16_9]: https://github.com/systemd/systemd/issues/39105
-
-[^16_10]: https://bbs.archlinux.org/viewtopic.php?id=248158
-
-[^16_11]: https://gist.github.com/amanjuman/4a7f883e230f03cc61c3370b258367d1
-
-[^16_12]: https://www.reddit.com/r/linux/comments/us0h00/guide_on_how_to_enable_dot_dns_over_tls_on/
-
-[^16_13]: https://gist.github.com/Jiab77/305b8dc570c4886009417fef67bb0464
-
-[^16_14]: https://forums.debian.net/viewtopic.php?t=153959
-
-[^16_15]: https://www.reddit.com/r/debian/comments/ob5qjj/dns_over_tls_systemdresolved_problem/
-
-[^16_16]: https://www.reddit.com/r/debian/comments/1nq3qzz/systemdresolved_with_dns_over_tls_stops_working/
-
-[^16_17]: https://askubuntu.com/questions/1291373/dns-over-tls-dot-not-working-in-20-10
-
-[^16_18]: https://askubuntu.com/questions/1506255/systemd-resolved-dns-over-https-doh-with-custom-port-and-domain
-
-[^16_19]: https://oneuptime.com/blog/post/2026-03-02-how-to-use-systemd-resolved-for-dns-configuration-on-ubuntu/view
-
-[^16_20]: https://www.linux.org.ru/forum/desktop/17894031
-
-[^16_21]: https://publicdns.info/guides/encrypted-dns/linux-systemd.html
-
-[^16_22]: https://serverfault.com/questions/1099034/setting-global-dns-mac-address-settings-on-a-debian-based-linux-distribution-w
-
 
 ---
 
