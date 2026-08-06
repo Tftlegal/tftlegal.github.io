@@ -46,6 +46,7 @@ systemctl enable --now systemd-resolved.service
 ```
 
 Конфигурация
+
 Файл: /etc/systemd/resolved.conf
 
 ```
