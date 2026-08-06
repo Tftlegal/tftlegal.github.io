@@ -225,11 +225,6 @@ DNSOverTLS=yes
 dns.adguard-dns.com
 ```
 
-```text
-94.140.15.15
-dns.adguard-dns.com
-```
-
 В обычных сетевых настройках macOS эти значения нужно указывать только как IP-адреса — поле DNS не понимает запись вида:
 
 ```text
