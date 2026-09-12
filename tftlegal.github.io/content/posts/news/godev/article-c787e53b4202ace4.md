@@ -3,14 +3,19 @@ title: "Results from the 2025 Go Developer Survey"
 date: 2026-01-21T00:00:00Z
 source: "godev"
 original_url: "https://go.dev/blog/survey2025"
-summary: "The 2025 Go Developer Survey results, focused on developer sentiment towards Go, use cases, challenges, and developer environments."
+summary: "В тексте говорится о результатах опроса Go-разработчиков 2025 года.   Он отражает отношение разработчиков к языку.   Материал рассматривает типичные сценарии применения Go.   Отдельно описаны основные сложности, с которыми сталкиваются разработчики.   Также представлены данные об их рабочих и разработческих окружениях.   В целом текст дает представление о настроениях и практиках Go-сообщества."
 ---
 
 # Results from the 2025 Go Developer Survey
 
 ## Краткое содержание
 
-The 2025 Go Developer Survey results, focused on developer sentiment towards Go, use cases, challenges, and developer environments.
+В тексте говорится о результатах опроса Go-разработчиков 2025 года.  
+Он отражает отношение разработчиков к языку.  
+Материал рассматривает типичные сценарии применения Go.  
+Отдельно описаны основные сложности, с которыми сталкиваются разработчики.  
+Также представлены данные об их рабочих и разработческих окружениях.  
+В целом текст дает представление о настроениях и практиках Go-сообщества.
 
 ## Полная статья
 
