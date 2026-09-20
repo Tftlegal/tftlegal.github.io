@@ -259,7 +259,7 @@ cat hosts**
 
 выставляем параметры для сертификата который будет сгенерен и какие там будут домены
 
-| 1234567891011121314151617 | vault_certificate_vars: country_name: RU locality_name: Some Country organization_name: Test email_address: master@test.local common_name: test.local subject_alt_name: - DNS:*.test.local - DNS:*.dev.test.local - DNS:*.staging.test.local - DNS:*.prod.test.local - DNS:*.infra.test.local - DNS:vault.test.local - DNS:vault1.test.local - DNS:vault2.test.local - DNS:vault3.test.local - IP:127.0.0.1 |
+| | vault_certificate_vars: country_name: RU locality_name: Some Country organization_name: Test email_address: master@test.local common_name: test.local subject_alt_name: - DNS:*.test.local - DNS:*.dev.test.local - DNS:*.staging.test.local - DNS:*.prod.test.local - DNS:*.infra.test.local - DNS:vault.test.local - DNS:vault1.test.local - DNS:vault2.test.local - DNS:vault3.test.local - IP:127.0.0.1 |
 | --- | --- |
 
 если у вас уже есть сертификат (купленный или самподпианный) то положите его в директорию**/etc/ansible/roles/vault/ssl/**назовите его**my_crt_file.crt**так же нужно положить в эту директорию pem файл my_crt_file.pem имя файлов как и директорию можно задать в переменных**localhost_ssl_dir****vault_certificate_file_name**в файле**/etc/ansible/roles/vault/defaults/main.yaml**если этого не сделать то будет сгенерен самоподписанный сертификат
@@ -272,7 +272,7 @@ cat hosts**
 
 как и писал выше ключи вот тут:
 
-| 123456789101112131415161718 | [root@ansible ansible]# cat roles/vault/unseal_tmp/rootkey hvs.UuG0QJvRRfwUHUTGxDTjFaAd[root@ansible ansible]# [root@ansible ansible]# cat roles/vault/unseal_tmp/unseal_key_0 fab3991ca411bf9a7bfef1d99131a983ce1906b10f6e47cbdc8da7e44f0b3a3a3e[root@ansible ansible]# [root@ansible ansible]# cat roles/vault/unseal_tmp/unseal_key_17540f4e2e6084813fd23ad98a00257501e6a8be27dbabf2664b1f807a71d1bf9a3[root@ansible ansible]# [root@ansible ansible]# cat roles/vault/unseal_tmp/unseal_key_2261be9452bc5abbe07942e00d5f3d1adfeb705e6a24733ae9fed514f22b81e6a82[root@ansible ansible]# [root@ansible ansible]# cat roles/vault/unseal_tmp/unseal_key_3c0f1027f89631c403814321e3ad764407e3c204a091f0a30ccc9d1e3bb373d2ca4[root@ansible ansible]# [root@ansible ansible]# cat roles/vault/unseal_tmp/unseal_key_49d8faf0c33a784f7019ab24685e22f9f146c7091674bd868f730993bb02c6c7476[root@ansible ansible]# |
+| | [root@ansible ansible]# cat roles/vault/unseal_tmp/rootkey hvs.UuG0QJvRRfwUHUTGxDTjFaAd[root@ansible ansible]# [root@ansible ansible]# cat roles/vault/unseal_tmp/unseal_key_0 fab3991ca411bf9a7bfef1d99131a983ce1906b10f6e47cbdc8da7e44f0b3a3a3e[root@ansible ansible]# [root@ansible ansible]# cat roles/vault/unseal_tmp/unseal_key_17540f4e2e6084813fd23ad98a00257501e6a8be27dbabf2664b1f807a71d1bf9a3[root@ansible ansible]# [root@ansible ansible]# cat roles/vault/unseal_tmp/unseal_key_2261be9452bc5abbe07942e00d5f3d1adfeb705e6a24733ae9fed514f22b81e6a82[root@ansible ansible]# [root@ansible ansible]# cat roles/vault/unseal_tmp/unseal_key_3c0f1027f89631c403814321e3ad764407e3c204a091f0a30ccc9d1e3bb373d2ca4[root@ansible ansible]# [root@ansible ansible]# cat roles/vault/unseal_tmp/unseal_key_49d8faf0c33a784f7019ab24685e22f9f146c7091674bd868f730993bb02c6c7476[root@ansible ansible]# |
 | --- | --- |
 
 ### []Установка gitlab / gitlab-runner(host)
@@ -822,7 +822,7 @@ http://gitlab.test.local/users/sign_in
 
 **https://vault.test.local:8200/**
 
-напомню что root_token hvs.UuG0QJvRRfwUHUTGxDTjFaAd
+напомню что root_token hvs.*****************************
 
 переходим:
 **Access -> Enable new Method ->LDAP-> Enable Method**
@@ -2523,7 +2523,7 @@ root@client:~/vault-autounseal#**kubectl get cm kube-root-ca.crt -o jsonpath="{[
 
 получаем наш серт:
 
-| 123456789101112131415161718192021 | root@client:~/vault-autounseal# kubectl get cm kube-root-ca.crt -o jsonpath="{['data']['ca\.crt']}"-----BEGIN CERTIFICATE-----MIIC/jCCAeagAwIBAgIBADANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwprdWJlcm5ldGVzMB4XDTI0MDYzMDE0MjIxMFoXDTM0MDYyODE0MjIxMFowFTETMBEGA1UEAxMKa3ViZXJuZXRlczCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAPsSLBw3lg/4zrpycC1xJprK7XRIZK6AyL7DIClHPhAWn+h+m72r4PfZib9wu7/VS0e0SkNhVhEhjTZx1yMkJfP4zwd6IUuFAptZfCgVHnJQnkPeadWUqj/zEIh2ubcgbRwsjG1nh8yNRbtrxd/dpXPveBCFptOi5CqdUYodhoBDic5mYwbk8AbMf71FBhhdq8+8y5TiFlXPglITHxe/0VHCXO3ANUvNJDbDoYUGU5I0Kv3AIwffxSrNlyVhgzX70b7eKaurkmGW577hXCEZapRjHlxl2wUwW+BCKZ7X8MCFbwUVVgVLP0nroKvEVUxQNimalip/RtaqiKrf3PypuUsCAwEAAaNZMFcwDgYDVR0PAQH/BAQDAgKkMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFB/OXFsCKolo5DCMnaFCxrXMBamSMBUGA1UdEQQOMAyCCmt1YmVybmV0ZXMwDQYJKoZIhvcNAQELBQADggEBAKQ3XdnYLdoS9OeETDMGj3nHXyjZsfc7TupYIpHwUH27Jh9LSzl0oxK1dWoRVizF6P1VKlKoZV7tzPPFEjqQfeE1cDXErY4acWq6v6ta3Og65TH6d9/rIqcUfr7UqZw+oMRi4UGkCP4PGoG8KmcpmGmWBLmzBD/ChB0zE9gN2vsKgGWSYUdZoO3KbrMRE/bdH1jDABXpkXvcnQ+gPaqPw1ZNOcADFWwITbKaRAwWTCspgqKd7D1IAuPRR/kIDPIWCc0rLdvPPuKTmx4Ah3j0TQvc8UW/gQX7OV2iReE0sZ1n/RRR4Fa+9mtUleaODao0MvqHVo+9IYFCTTi1fvRCySE=-----END CERTIFICATE----- |
+|  | root@client:~/vault-autounseal# kubectl get cm kube-root-ca.crt -o jsonpath="{['data']['ca\.crt']}"-----BEGIN CERTIFICATE-----MIIC/jCCAeagAwIBAgIBADANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwprdWJlcm5ldGVzMB4XDTI0MDYzMDE0MjIxMFoXDTM0MDYyODE0MjIxMFowFTETMBEGA1UEAxMKa3ViZXJuZXRlczCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAPsSLBw3lg/4zrpycC1xJprK7XRIZK6AyL7DIClHPhAWn+h+m72r4PfZib9wu7/VS0e0SkNhVhEhjTZx1yMkJfP4zwd6IUuFAptZfCgVHnJQnkPeadWUqj/zEIh2ubcgbRwsjG1nh8yNRbtrxd/dpXPveBCFptOi5CqdUYodhoBDic5mYwbk8AbMf71FBhhdq8+8y5TiFlXPglITHxe/0VHCXO3ANUvNJDbDoYUGU5I0Kv3AIwffxSrNlyVhgzX70b7eKaurkmGW577hXCEZapRjHlxl2wUwW+BCKZ7X8MCFbwUVVgVLP0nroKvEVUxQNimalip/RtaqiKrf3PypuUsCAwEAAaNZMFcwDgYDVR0PAQH/BAQDAgKkMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFB/OXFsCKolo5DCMnaFCxrXMBamSMBUGA1UdEQQOMAyCCmt1YmVybmV0ZXMwDQYJKoZIhvcNAQELBQADggEBAKQ3XdnYLdoS9OeETDMGj3nHXyjZsfc7TupYIpHwUH27Jh9LSzl0oxK1dWoRVizF6P1VKlKoZV7tzPPFEjqQfeE1cDXErY4acWq6v6ta3Og65TH6d9/rIqcUfr7UqZw+oMRi4UGkCP4PGoG8KmcpmGmWBLmzBD/ChB0zE9gN2vsKgGWSYUdZoO3KbrMRE/bdH1jDABXpkXvcnQ+gPaqPw1ZNOcADFWwITbKaRAwWTCspgqKd7D1IAuPRR/kIDPIWCc0rLdvPPuKTmx4Ah3j0TQvc8UW/gQX7OV2iReE0sZ1n/RRR4Fa+9mtUleaODao0MvqHVo+9IYFCTTi1fvRCySE=-----END CERTIFICATE----- |
 | --- | --- |
 
 создаём сервис аккаунт
@@ -2534,7 +2534,7 @@ root@client:~/vault-autounseal#**kubectl create serviceaccount vault-auth -n kub
 
 root@client:~/vault-autounseal#**kubectl create token vault-auth -n kube-system --duration 876000h**
 
-|  | eyJhbGciOiJSUzI1NiIsImtpZCI6IkdrQlByYnlkSXBDczR6SUhjalZreDZibnlGX18wVGpqenU2SVRabXVZN1UifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjo0ODg1NzAzNDUwLCJpYXQiOjE3MzIxMDM0NTAsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJ2YXVsdC1hdXRoIiwidWlkIjoiZDRhZmY3YzktY2Q4My00ODEwLWEyYzYtYWRjZmU5M2VlY2MwIn19LCJuYmYiOjE3MzIxMDM0NTAsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTp2YXVsdC1hdXRoIn0.jwJulDCsUGDnTgQcMqcV00V_JW1OxfEJZleB_qggqjSlTWjlWW9y_4ijs8-o66IeZFi_tIx2lC80G1uAkxnpenGdqC36fEiOzMW3WosYWsXhdNVENBYLEaFUWHuJPNnDJsOg9bVPyLlyVigLfAgp5RdDltaheo2Voxw4P_JWCynYwNKNsdWmZ97CnB5SagHgccsYnr_eacL_P8Ewb82HFyqkcN6dk6lhzWkD2zI4Nqg1gNpkl95La8DX9-MckkMxyu5dh9foksWT4YjqJIsmHb76agTEbTF3r0N2DCDBLUQrVUQfT-a-8hXMCp1N68BjxANkyk-sDSmOp6xa4spzjg |
+|  | eyJ************************************Jlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjo0ODg1NzAzNDUwLCJpYXQiOjE3MzIxMDM0NTAsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJ2YXVsdC1hdXRoIiwidWlkIjoiZDRhZmY3YzktY2Q4My00ODEwLWEyYzYtYWRjZmU5M2VlY2MwIn19LCJuYmYiOjE3MzIxMDM0NTAsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTp2YXVsdC1hdXRoIn0.jwJulDCsUGDnTgQcMqcV00V_JW1OxfEJZleB_qggqjSlTWjlWW9y_4ijs8-o66IeZFi_tIx2lC80G1uAkxnpenGdqC36fEiOzMW3WosYWsXhdNVENBYLEaFUWHuJPNnDJsOg9bVPyLlyVigLfAgp5RdDltaheo2Voxw4P_JWCynYwNKNsdWmZ97CnB5SagHgccsYnr_eacL_P8Ewb82HFyqkcN6dk6lhzWkD2zI4Nqg1gNpkl95La8DX9-MckkMxyu5dh9foksWT4YjqJIsmHb76agTEbTF3r0N2DCDBLUQrVUQfT-a-8hXMCp1N68BjxANkyk-sDSmOp6xa4spzjg |
 | --- | --- |
 
 далее подключаемся к нашему vault который на виртуалках
@@ -2543,11 +2543,11 @@ root@client:~/vault-autounseal#**ssh 192.168.1.103**
 
 напоминаю root token
 
-hvs.UuG0QJvRRfwUHUTGxDTjFaAd
+hvs.***********************
 
 root@vault1:~#**vault login**
 
-|  | Key Value--- -----token hvs.UuG0QJvRRfwUHUTGxDTjFaAdtoken_accessor a87f7TLRK4mCRnrg5RDh4Pt4token_duration ∞token_renewable falsetoken_policies ["root"]identity_policies []policies ["root"] |
+|  | Key Value--- -----token hvs.UuG0Q***token_accessor a**********4token_duration ∞token_renewable falsetoken_policies ["root"]identity_policies []policies ["root"] |
 | --- | --- |
 
 создаём секрет который будем подкидывать:
@@ -2568,7 +2568,7 @@ root@vault1:~#**vault auth enable kubernetes**
 
 root@vault1:~#
 
-|  | export TOKEN_REVIEWER_JWT='eyJhbGciOiJSUzI1NiIsImtpZCI6IkdrQlByYnlkSXBDczR6SUhjalZreDZibnlGX18wVGpqenU2SVRabXVZN1UifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjo0ODg1NzAzNDUwLCJpYXQiOjE3MzIxMDM0NTAsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJ2YXVsdC1hdXRoIiwidWlkIjoiZDRhZmY3YzktY2Q4My00ODEwLWEyYzYtYWRjZmU5M2VlY2MwIn19LCJuYmYiOjE3MzIxMDM0NTAsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTp2YXVsdC1hdXRoIn0.jwJulDCsUGDnTgQcMqcV00V_JW1OxfEJZleB_qggqjSlTWjlWW9y_4ijs8-o66IeZFi_tIx2lC80G1uAkxnpenGdqC36fEiOzMW3WosYWsXhdNVENBYLEaFUWHuJPNnDJsOg9bVPyLlyVigLfAgp5RdDltaheo2Voxw4P_JWCynYwNKNsdWmZ97CnB5SagHgccsYnr_eacL_P8Ewb82HFyqkcN6dk6lhzWkD2zI4Nqg1gNpkl95La8DX9-MckkMxyu5dh9foksWT4YjqJIsmHb76agTEbTF3r0N2DCDBLUQrVUQfT-a-8hXMCp1N68BjxANkyk-sDSmOp6xa4spzjg' |
+|  | export TOKEN_REVIEWER_JWT='eyJhbGciOiJSUzI1N************************************0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjo0ODg1NzAzNDUwLCJpYXQiOjE3MzIxMDM0NTAsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJ2YXVsdC1hdXRoIiwidWlkIjoiZDRhZmY3YzktY2Q4My00ODEwLWEyYzYtYWRjZmU5M2VlY2MwIn19LCJuYmYiOjE3MzIxMDM0NTAsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTp2YXVsdC1hdXRoIn0.jwJulDCsUGDnTgQcMqcV00V_JW1OxfEJZleB_qggqjSlTWjlWW9y_4ijs8-o66IeZFi_tIx2lC80G1uAkxnpenGdqC36fEiOzMW3WosYWsXhdNVENBYLEaFUWHuJPNnDJsOg9bVPyLlyVigLfAgp5RdDltaheo2Voxw4P_JWCynYwNKNsdWmZ97CnB5SagHgccsYnr_eacL_P8Ewb82HFyqkcN6dk6lhzWkD2zI4Nqg1gNpkl95La8DX9-MckkMxyu5dh9foksWT4YjqJIsmHb76agTEbTF3r0N2DCDBLUQrVUQfT-a-8hXMCp1N68BjxANkyk-sDSmOp6xa4spzjg' |
 | --- | --- |
 
 теперь настраиваем auth к кластеру
@@ -5588,7 +5588,7 @@ deployment.yaml
 
 кстати подключить репозиторий можно командой:
 
-|  | argocd@argo-cd-argocd-server-6c68fc4594-xhjn4:~$ argocd repo add https://gitlab.test.local/argo/test-app/app1.git \ --username argo-token \ --password glpat-SshzATU-yGpnWQF9_EtA \ --insecure-skip-server-verification |
+|  | argocd@argo-cd-argocd-server-6c68fc4594-xhjn4:~$ argocd repo add https://gitlab.test.local/argo/test-app/app1.git \ --username argo-token \ --password glpat-Ssh************** \ --insecure-skip-server-verification |
 | --- | --- |
 
 как видим репозиторий подключен
