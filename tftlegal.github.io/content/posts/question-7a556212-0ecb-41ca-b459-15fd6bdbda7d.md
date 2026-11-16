@@ -1,7 +1,7 @@
 ---
-title: "Big Data analysis"
+title: "PostgreSQL: Big Data analysis"
 summary: "Базовые практики для работы с большими данными..."
-tags: [PostgreSQL, todo]
+tags: [PostgreSQL, join, sql, todo]
 date: 2026-07-23T20:09:58Z
 tldr: "933820173"
 ---
