@@ -1,6 +1,6 @@
 ---
-title: "DEBUG:  Как устранить лаги ПЛАНИРОВЩИК ЯДРА / ПРЕРЫВАНИЯ (IRQ) под нагрузкой с RTX 3090 на боту и старой платформе Intel 5500 (i5500_temp, i7core_edac — Nehalem/Westmere LGA1366) с запущенной llama.cpp"
-summary: "Для устранения лагов Планировщика Ядра/перебоев IRQ под нагрузкой RTX 3090 на старой платформе Intel 550, рекомендуется использовать PostgreSQL с WAL и репликацией, Nginx для маршрутизации и кеширования, а также Redis для кэширования. Установите irqbalance, запустите ПО используя taskset, а также используйте Prometheus и Grafana для мониторинга производительности. Тестируйте с использованием Apache JMeter и Locust, а затем масштабируй с помощью Kubernetes."
+title: "DEBUG: Как устранить лаги ПЛАНИРОВЩИКA ЯДРА / ПРЕРЫВАНИЯ (IRQ) под нагрузкой от llama.cpp с RTX 3090 на боту у старой платформы Intel 5500 (i5500_temp, i7core_edac — Nehalem/Westmere LGA1366)"
+summary: "Для устранения лагов Планировщика Ядра/перебоев IRQ под нагрузкой RTX 3090 на старой платформе Intel 5500, для мониторинга рекомендуется использовать Zabbix c  PostgreSQL с WAL и репликацией, Nginx для маршрутизации и кеширования, а также Redis для кэширования. Установите irqbalance, запустите ПО используя taskset, а также используйте Prometheus и Grafana для мониторинга производительности. Тестируйте с использованием Apache JMeter и Locust, а затем масштабируй с помощью Kubernetes."
 tags: ["ai-generated", "todo", "debug", "intel", "irq", "lga1366", "nehalem", "rtx", "westmere", "cpu", "планировщик", "прерывания", "core"]
 date: 2026-11-25T16:47:02Z
 tldr: "933820173"
@@ -366,92 +366,8 @@ echo -e "\nГотово! Полный отчет сохранен в: $REPORT"
 Скрипт полной диагностики сети (net_diag.sh)
 
 Сохраните код в файл net_diag.sh на проблемном сервере (192.168.0.100), сделайте исполняемым и запустите от root:
-bash
-#!/usr/bin/env bash
-# Полная диагностика сети для Kali Linux (L1 - L4 + Kernel/Hardware)
 
-IFACE="${1:-enp6s0}"
-TARGET_IP="${2:-192.168.0.150}"
-REPORT="/root/net_diagnostic_$(date +%Y%m%d_%H%M%S).txt"
-
-exec > >(tee -a "$REPORT") 2>&1
-
-echo "=================================================================="
-echo " ОТЧЕТ ДИАГНОСТИКИ СЕТИ | $(date)"
-echo " Хост: $(hostname) | Интерфейс: $IFACE | Цель: $TARGET_IP"
-echo "=================================================================="
-
-echo -e "\n[1] СИСТЕМА, ЯДРО И ДРАЙВЕР СЕТЕВОЙ КАРТЫ"
-uname -a
-lspci -k | grep -A 3 -iE "ethernet|network"
-ethtool -i "$IFACE" 2>/dev/null || echo "ethtool -i недоступен"
-
-echo -e "\n[2] ФИЗИЧЕСКИЙ УРОВЕНЬ (L1): СКОРОСТЬ, ДУПЛЕКС, ЭНЕРГОСБЕРЕЖЕНИЕ"
-ethtool "$IFACE" 2>/dev/null | grep -E "Speed|Duplex|Auto-negotiation|Link detected|Supported link|Advertised link|Link partner"
-echo "--- Проверка Energy Efficient Ethernet (EEE) ---"
-ethtool --show-eee "$IFACE" 2>/dev/null || echo "EEE не поддерживается"
-echo "--- Проверка Offloading (TSO/GSO/GRO) ---"
-ethtool -k "$IFACE" 2>/dev/null | grep -E "tcp-segmentation|generic-segmentation|generic-receive|rx-checksumming|tx-checksumming"
-
-echo -e "\n[3] СЧЕТЧИКИ ОШИБОК И ПОТЕРЬ НА ИНТЕРФЕЙСЕ (L2)"
-ip -s -s link show "$IFACE"
-echo "--- Аппаратная статистика драйвера (ethtool -S) ---"
-ethtool -S "$IFACE" 2>/dev/null | grep -iE "err|drop|fail|miss|fifo|crc|over|collision|reset" | awk '$2 > 0'
-
-echo -e "\n[4] АДРЕСАЦИЯ, ARP-ТАБЛИЦА И КОНФЛИКТЫ IP"
-ip -br addr
-ip route
-echo "--- Соседи (ARP) ---"
-ip neigh show
-if command -v arp-scan >/dev/null; then
-    echo "--- Сканирование подсети на дубликаты IP (arp-scan) ---"
-    arp-scan --interface="$IFACE" --localnet 2>/dev/null | grep -E "DUP:|192\.168\."
-fi
-
-echo -e "\n[5] ПРОВЕРКА ЗАДЕРЖЕК И ПОТЕРЬ ДО $TARGET_IP (MTR + PING FLOOD)"
-if command -v mtr >/dev/null; then
-    mtr -rwc 20 "$TARGET_IP"
-else
-    ping -c 20 -i 0.2 "$TARGET_IP"
-fi
-
-echo -e "\n[6] ТЕКУЩАЯ НАГРУЗКА НА СЕТЬ И СОКЕТЫ (L4)"
-ss -s
-echo "--- Топ соединений к llama.cpp (8090) и SSH (22) ---"
-ss -tinp | grep -E ":8090|:22" -A 1 | head -n 30
-
-echo -e "\n[7] ОШИБКИ В ЛОГАХ ЯДРА (DMESG)"
-dmesg -T | grep -iE "$IFACE|eth|r8169|e1000|igb|ixgbe|link|netdev|pcie|aer|irq" | tail -n 30
-
-echo -e "\n=================================================================="
-echo " АВТОМАТИЧЕСКИЙ АНАЛИЗ ВОЗМОЖНЫХ ПРИЧИН:"
-echo "=================================================================="
-
-SPEED=$(ethtool "$IFACE" 2>/dev/null | awk '/Speed:/ {print $2}')
-if [[ "$SPEED" == "100Mb/s" || "$SPEED" == "10Mb/s" ]]; then
-    echo "[!] КРИТИЧНО: Скорость линка $SPEED. При обмене данными между K8s и llama.cpp"
-    echo "    такой канал мгновенно забивается, вызывая очереди и инпутлаг."
-    echo "    Проверьте патч-корд (нужен Cat5e/Cat6 со всеми 8 жилами) и порт свитча/роутера."
-fi
-
-DROPS=$(ip -s link show "$IFACE" | awk '/RX:/{getline; print $4}')
-if [[ "${DROPS:-0}" -gt 0 ]]; then
-    echo "[!] ВНИМАНИЕ: Обнаружены отброшенные входящие пакеты (RX dropped: $DROPS)."
-fi
-
-if dmesg | grep -qiE "r8169.*link|NETDEV WATCHDOG|PCIe Bus Error"; then
-    echo "[!] ВНИМАНИЕ: В dmesg есть ошибки драйвера сетевой карты или шины PCIe!"
-fi
-
-if uname -r | grep -q "7.2"; then
-    echo "[!] ИНФО: Используется ядро $(uname -r). В Kali Rolling 2026.3 известны регрессии"
-    echo "    сетевого стека на ядрах 7.2.x — проверьте, сохраняется ли проблема на предыдущем ядре."
-fi
-
-echo -e "\nГотово! Полный отчет сохранен в: $REPORT"
-Используйте код с осторожностью.
-
-### Как запустить?
+### Как запустить скрипт полной диагностики сети для Kali Linux (L1 - L4 + Kernel/Hardware)
 
 ```bash
 chmod +x net_diag.sh
